@@ -19,5 +19,7 @@ Route::prefix('admin')->group(function()
 
         Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
 
+        Route::get('/{id}', [ProductController::class, 'show'])->name('admin.product.show');
+
     });
 });

@@ -14,4 +14,13 @@ class ProductController extends Controller
         return view('admin.product.index', compact('products'));
     }
 
+    public function  show($id)
+    {
+        $product = Product::with('category','brand')->find($id);
+
+        return view('admin.product.detail', compact('product'));
+
+    }
+
+
 }

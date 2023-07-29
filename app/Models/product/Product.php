@@ -37,6 +37,8 @@ class Product extends Model
         'sync_seo_content'
     ];
 
+
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
