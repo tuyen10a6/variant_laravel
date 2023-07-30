@@ -4,11 +4,13 @@ namespace App\Models\product;
 
 use App\Models\brand\Brand;
 use App\Models\category\Category;
+use App\Models\product_image\ProductImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use function PHPSTORM_META\map;
 
 class Product extends Model
@@ -37,9 +39,6 @@ class Product extends Model
         'sync_seo_content'
     ];
 
-
-
-
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
@@ -50,6 +49,11 @@ class Product extends Model
         return  $this->belongsTo(Brand::class, 'brand_id');
     }
 
+
+    public  function  product_image(): HasOne
+    {
+         return  $this->hasOne(ProductImage::class);
+    }
 
 
 

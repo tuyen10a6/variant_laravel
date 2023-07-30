@@ -18,6 +18,10 @@
                     <input required  type="text" class="form-control" id="name" name="name">
                 </div>
                 <div class="form-group">
+                    <label for="pwd">Hình ảnh:</label>
+                    <input required  name="image" type="file" class="form-control" id="pwd">
+                </div>
+                <div class="form-group">
 
                     <input name="sku" type="hidden" class="form-control" id="pwd">
                 </div>
@@ -54,6 +58,7 @@
                     <label for="pwd">Giá tiền:</label>
                     <input required  name="price" type="text" class="form-control" id="pwd">
                 </div>
+
                 <div class="form-group">
                     <label for="pwd">Giá tiền khuyến mãi:</label>
                     <input  required name="promotion_price" type="text" class="form-control" id="pwd">
@@ -70,9 +75,8 @@
                 </div>
             </div>
             <button class="btn btn-danger ml-3" type="submit"> Thêm</button>
+            <a href="{{route('admin.product.index')}}" class="btn btn-dark ml-3"> Quay lại </a>
         </form>
-
-
     @endsection
 
 

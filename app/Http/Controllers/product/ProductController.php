@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
 
-        $products = Product::with('category','brand')->where("status", Product::PRODUCT_STATUS_IS_ACTIVE)->paginate(2);
+        $products = Product::with('category', 'brand', 'product_image')->where("status", Product::PRODUCT_STATUS_IS_ACTIVE)->paginate(10);
 
         return view('admin.product.index', compact('products'));
     }
@@ -99,12 +99,5 @@ class ProductController extends Controller
             return redirect()->route('admin.product.index')->with('success', 'Xóa sản phẩm thành công');
         }
     }
-
-
-
-
-
-
-
 
 }
