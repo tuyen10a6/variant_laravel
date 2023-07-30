@@ -25,12 +25,11 @@ Route::prefix('admin')->group(function()
 
         Route::get('update/{id}', [ProductController::class, 'show_update'])->name('admin.product.update');
 
+        Route::delete('delete/{id}', [ProductController::class, 'remove'])->name('admin.product.delete');
+
         Route::put('/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
 
         Route::post('add', [ProductController::class, 'store'])->name('admin.product.store');
-
-
-
 
 
     });

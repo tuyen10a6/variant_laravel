@@ -43,7 +43,6 @@ class ProductController extends Controller
             'name' => 'required|unique:products',
             'price' => 'required',
             'status' => 'required',
-
         ]);
 
        $input = $request->all();
@@ -73,7 +72,6 @@ class ProductController extends Controller
 
     public function edit(Request $request, $id)
     {
-
         $product = Product::find($id);
 
          $product->name = $request->input('name');
@@ -89,7 +87,17 @@ class ProductController extends Controller
         if ($product->save()) {
             return redirect()->route('admin.product.index')->with('success', 'Sản phẩm đã được cập nhật thành công');
         }
+    }
 
+    public function remove($id)
+    {
+        $product = Product::find($id);
+
+        if($product)
+        {
+            $product->delete();
+            return redirect()->route('admin.product.index')->with('success', 'Xóa sản phẩm thành công');
+        }
     }
 
 
