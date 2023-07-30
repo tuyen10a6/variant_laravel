@@ -2,7 +2,7 @@
 
 @section('content')
 <h3 class="ml-3 mt-5 mb-2">BẢNG SẢN PHẨM</h3>
-<button class="btn btn-danger ml-3 mb-3"> Thêm mới</button>
+<a class="btn btn-danger ml-3 mb-3" href="{{route('admin.product.create')}}">Thêm mới</a>
 <table class="table table-striped table-bordered" >
     <thead>
       <tr>
@@ -37,8 +37,10 @@
                 </a>
             </td>
         </tr>
+
     @endforeach
 
     </tbody>
   </table>
+{{ $products->links('pagination::bootstrap-5') }}
 @endsection
