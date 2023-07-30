@@ -17,12 +17,14 @@ Route::prefix('admin')->group(function()
 {
     Route::prefix('product')->group(function() {
 
-        Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
+        Route::get('', [ProductController::class, 'index'])->name('admin.product.index');
 
-        Route::get('/create', [ProductController::class, 'create'])->name('admin.product.create');
+        Route::get('create', [ProductController::class, 'create'])->name('admin.product.create');
 
-        Route::get('/{id}', [ProductController::class, 'show'])->name('admin.product.show');
+        Route::get('{id}', [ProductController::class, 'show'])->name('admin.product.show');
 
+        Route::post('add', [ProductController::class, 'store'])->name('admin.product.store');
 
+        Route::get('update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
     });
 });
