@@ -13,11 +13,11 @@
                </div>
                <div class="form-group">
                    <label for="pwd">Giá tiền:</label>
-                   <input value="{{ number_format($product->price) }} đ" type="text" class="form-control" id="pwd">
+                   <input value="{{ number_format($product->price) }} đ" type="text" class="form-control" id="price">
                </div>
                <div class="form-group">
                    <label for="pwd">Loại sản phẩm:</label>
-                   <input value="{{ $product->category->name }}" type="text" class="form-control" id="pwd">
+                   <input value="{{ $product->category->name }}" type="text" class="form-control" id="category-id">
                </div>
                <div class="form-group">
                    <label for="pwd">Mô tả ngắn:</label>
@@ -28,27 +28,23 @@
 
                <div class="form-group">
                    <label for="pwd">slug:</label>
-                   <input value="{{$product->slug}}" type="text" class="form-control" id="pwd">
+                   <input value="{{$product->slug}}" type="text" class="form-control" id="slug">
                </div>
                <div class="form-group">
                    <label for="pwd">Giá tiền khuyến mãi:</label>
-                   <input value="{{ $product->promotion_price }}" type="text" class="form-control" id="pwd">
+                   <input value="{{ $product->promotion_price }}" type="text" class="form-control" id="promotion-price">
                </div>
                <div class="form-group">
                    <label  for="pwd">Số lượng:</label>
-                   <input value="{{ $product->qty }}" type="text" class="form-control" id="pwd">
+                   <input value="{{ $product->qty }}" type="text" class="form-control" id="quantity">
                </div>
                <div class="form-group">
                    <label for="pwd">Trạng thái:</label>
-                   <input value="{{ $product->status }}" type="text" class="form-control" id="pwd">
+                   <input value="{{ $product->status }}" type="text" class="form-control" id="status">
                </div>
                <div class="form-group">
                    <label for="pwd">Nhãn hiệu:</label>
                    <input value="{{ $product->brand->name }}" type="text" class="form-control" id="pwd">
                </div>
            </div>
-
-
-
-
 @endsection

@@ -23,8 +23,15 @@ Route::prefix('admin')->group(function()
 
         Route::get('{id}', [ProductController::class, 'show'])->name('admin.product.show');
 
+        Route::get('update/{id}', [ProductController::class, 'show_update'])->name('admin.product.update');
+
+        Route::put('/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
+
         Route::post('add', [ProductController::class, 'store'])->name('admin.product.store');
 
-        Route::get('update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
+
+
+
+
     });
 });

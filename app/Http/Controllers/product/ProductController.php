@@ -60,12 +60,40 @@ class ProductController extends Controller
        }
     }
 
-    public  function  update($id)
+    public function show_update($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $product = Product::find($id);
 
-        return view('admin.product.update', compact('product'));
+        $categories = Category::all();
+
+        $brands = Brand::all();
+
+        return view('admin.product.update', compact('product', 'categories', 'brands'));
     }
+
+    public function edit(Request $request, $id)
+    {
+
+        $product = Product::find($id);
+
+         $product->name = $request->input('name');
+         $product->category_id = $request->input('category_id');
+         $product->brand_id = $request->input('brand_id');
+         $product->price = $request->input('price');
+         $product->slug = Str::slug($request->input('name'), '-');
+         $product->promotion_price = $request->input('promotion_price');
+         $product->qty = $request->input('qty');
+         $product->status = $request->input('status');
+         $product->short_description = $request->input('short_description');
+
+        if ($product->save()) {
+            return redirect()->route('admin.product.index')->with('success', 'Sản phẩm đã được cập nhật thành công');
+        }
+
+    }
+
+
+
 
 
 
