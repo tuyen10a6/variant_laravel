@@ -2,7 +2,7 @@
 
 @section('content')
         <h2 class="ml-3 mt-3 mb-3">Cập nhật thông tin sản phẩm</h2>
-        <form action="{{route('admin.product.edit', $product->id)}}" method="POST">
+        <form enctype="multipart/form-data" action="{{route('admin.product.edit', $product->id)}}" method="POST">
             @csrf
             @method('PUT')
             <div class="ml-3 mr-3">
@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label for="pwd">Hình ảnh:</label>
                     <input  name="path" type="file" class="form-control" id="path">
-                    <img  src="{{$product->product_image->path}}" id="product-img-tag" style="height:180px; margin-top:30px; margin-left:20px" />
+                    <img alt="{{$product->name}}"  src="{{$product->product_image->path}}" id="product-img-tag" style="height:180px; margin-top:30px; margin-left:20px" />
                 </div>
                 <div class="form-group">
                     <input value="{{ $product->sku }}" type="hidden" class="form-control" id="sku" name="sku">

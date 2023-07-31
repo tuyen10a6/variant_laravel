@@ -9,6 +9,7 @@ use App\Models\product_image\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
 
 
 class ProductController extends Controller
@@ -30,6 +31,10 @@ class ProductController extends Controller
         return view('admin.product.detail', compact('product'));
 
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public  function create()
     {
         $brands = Brand::all();
@@ -39,6 +44,10 @@ class ProductController extends Controller
         return view('admin.product.create', compact('brands','categories'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|void
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -54,13 +63,14 @@ class ProductController extends Controller
 
        $input["slug"] = Str::slug($input["name"], "-");
 
-      $product = Product::create($input);
+        $product = Product::create($input);
 
         $fileName = time().$request->file('path')->getClientOriginalName();
 
         $path = $request->file('path')->storeAs('images', $fileName, 'public');
 
         $input["path"] = '/storage/'.$path;
+
 
         ProductImage::create([
             'product_id' => $product->id,
@@ -73,6 +83,11 @@ class ProductController extends Controller
            return redirect()->route('admin.product.index')->with('success', 'Thêm sản phẩm thành công');
        }
     }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+     */
 
     public function show_update($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
@@ -99,11 +114,12 @@ class ProductController extends Controller
          $product->status = $request->input('status');
          $product->short_description = $request->input('short_description');
 
-        $product_image = ProductImage::where('product_id', $id)->first();
+         $product_image = ProductImage::where('product_id', $id)->first();
+
 
         if ($request->hasFile('path')) {
 
-            $fileName = $request->file('path')->getClientOriginalName();
+            $fileName = time().$request->file('path')->getClientOriginalName();
 
             $path = $request->file('path')->storeAs('images', $fileName, 'public');
 
@@ -116,9 +132,7 @@ class ProductController extends Controller
         }
 
         if ($product->save()) {
-
             return redirect()->route('admin.product.index')->with('success', 'Sản phẩm đã được cập nhật thành công');
-
         }
     }
 
@@ -129,6 +143,7 @@ class ProductController extends Controller
         if($product)
         {
             $product->delete();
+
             return redirect()->route('admin.product.index')->with('success', 'Xóa sản phẩm thành công');
         }
     }
