@@ -20,6 +20,7 @@
                 <div class="form-group">
                     <label for="pwd">Hình ảnh:</label>
                     <input required  name="path" type="file" class="form-control" id="path">
+                    <img  src="" id="product-img-tag" style="height:180px; margin-top:30px; margin-left:20px" />
                 </div>
                 <div class="form-group">
 

@@ -19,6 +19,7 @@ class ProductController extends Controller
         $products = Product::with('category', 'brand', 'product_image')->where("status", Product::PRODUCT_STATUS_IS_ACTIVE)->paginate(10);
 
 
+
         return view('admin.product.index', compact('products'));
     }
 
@@ -98,8 +99,26 @@ class ProductController extends Controller
          $product->status = $request->input('status');
          $product->short_description = $request->input('short_description');
 
+        $product_image = ProductImage::where('product_id', $id)->first();
+
+        if ($request->hasFile('path')) {
+
+            $fileName = $request->file('path')->getClientOriginalName();
+
+            $path = $request->file('path')->storeAs('images', $fileName, 'public');
+
+            $product_image->path = '/storage/'. $path;
+
+            $product_image->name = $fileName;
+
+            $product_image->save();
+
+        }
+
         if ($product->save()) {
+
             return redirect()->route('admin.product.index')->with('success', 'Sản phẩm đã được cập nhật thành công');
+
         }
     }
 

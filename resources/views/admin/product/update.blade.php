@@ -14,6 +14,11 @@
                     <input value="{{ $product->name }}" type="text" class="form-control" id="name" name="name">
                 </div>
                 <div class="form-group">
+                    <label for="pwd">Hình ảnh:</label>
+                    <input  name="path" type="file" class="form-control" id="path">
+                    <img  src="{{$product->product_image->path}}" id="product-img-tag" style="height:180px; margin-top:30px; margin-left:20px" />
+                </div>
+                <div class="form-group">
                     <input value="{{ $product->sku }}" type="hidden" class="form-control" id="sku" name="sku">
                 </div>
                 <div class="form-group">

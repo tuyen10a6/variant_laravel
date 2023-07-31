@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Get the file input element
-    const input = document.getElementById("imagedefault");
+    const input = document.getElementById("path");
 
     // Get the image preview element
     const imgPreview = document.getElementById("product-img-tag");
