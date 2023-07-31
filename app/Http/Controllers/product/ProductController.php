@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\brand\Brand;
 use App\Models\category\Category;
 use App\Models\product\Product;
+use App\Models\product_image\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ class ProductController extends Controller
     {
 
         $products = Product::with('category', 'brand', 'product_image')->where("status", Product::PRODUCT_STATUS_IS_ACTIVE)->paginate(10);
+
 
         return view('admin.product.index', compact('products'));
     }
@@ -36,13 +38,13 @@ class ProductController extends Controller
         return view('admin.product.create', compact('brands','categories'));
     }
 
-
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|unique:products',
             'price' => 'required',
             'status' => 'required',
+            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
        $input = $request->all();
@@ -51,7 +53,19 @@ class ProductController extends Controller
 
        $input["slug"] = Str::slug($input["name"], "-");
 
-       Product::create($input);
+      $product = Product::create($input);
+
+        $fileName = time().$request->file('path')->getClientOriginalName();
+
+        $path = $request->file('path')->storeAs('images', $fileName, 'public');
+
+        $input["path"] = '/storage/'.$path;
+
+        ProductImage::create([
+            'product_id' => $product->id,
+            'name' =>  $request->file('path')->getClientOriginalName(),
+            'path' => $input['path'],
+        ]);
 
        if($input)
        {

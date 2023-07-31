@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="pwd">Hình ảnh:</label>
-                    <input required  name="image" type="file" class="form-control" id="pwd">
+                    <input required  name="path" type="file" class="form-control" id="path">
                 </div>
                 <div class="form-group">
 
