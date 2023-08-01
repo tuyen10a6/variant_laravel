@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\product\ProductController;
+use App\Http\Controllers\attribute\AttributeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +33,20 @@ Route::prefix('admin')->group(function()
         Route::post('add', [ProductController::class, 'store'])->name('admin.product.store');
 
 
+    });
+
+    Route::prefix('attribute')->group(function ()
+    {
+        Route::get('', [AttributeController::class, 'index'])->name('admin.attribute.index');
+
+        Route::get('create', [AttributeController::class, 'create'])->name('admin.attribute.create');
+
+        Route::post('create', [AttributeController::class, 'store'])->name('admin.attribute.store');
+
+        Route::get('update/{id}', [AttributeController::class, 'show'])->name('admin.attribute.show');
+
+        Route::put('update/{id}', [AttributeController::class, 'update'])->name('admin.attribute.update');
+
+        Route::delete('delete/{id}', [AttributeController::class, 'remove'])->name('admin.attribute.delete');
     });
 });

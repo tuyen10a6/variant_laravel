@@ -36,8 +36,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản lý:</h6>
-                <a class="collapse-item" href="">Sản phẩm</a>
-                <a class="collapse-item" href="">Thuộc tính</a>
+                <a class="collapse-item" href="{{route('admin.product.index')}}">Sản phẩm</a>
+                <a class="collapse-item" href="{{route('admin.attribute.index')}}">Thuộc tính</a>
                 <a class="collapse-item" href="">Giá trị thuộc tính</a>
             </div>
         </div>

@@ -15,8 +15,7 @@ class Attribute extends Model
     protected $table = 'attributes';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'attribute',
+        'attribute_code',
         'name'
     ];
-
 }
