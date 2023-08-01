@@ -13,7 +13,7 @@
         <form enctype="multipart/form-data" class="ml-3" action="{{route('admin.product.store')}}" method="post">
             @csrf
             <div class="ml-3 mr-3">
-                <div  class="form-group ">
+                <div class="form-group ">
                     <label for="usr">Tên sản phẩm:</label>
                     <input required  type="text" class="form-control" id="name" name="name">
                 </div>

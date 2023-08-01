@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\product\ProductController;
 use App\Http\Controllers\attribute\AttributeController;
+use App\Http\Controllers\attribute_value\AttributeValueController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,5 +49,14 @@ Route::prefix('admin')->group(function()
         Route::put('update/{id}', [AttributeController::class, 'update'])->name('admin.attribute.update');
 
         Route::delete('delete/{id}', [AttributeController::class, 'remove'])->name('admin.attribute.delete');
+    });
+
+    Route::prefix('attribute_value')->group(function ()
+    {
+        Route::get('', [AttributeValueController::class, 'index'])->name('admin.attributive.index');
+
+        Route::get('/create', [AttributeValueController::class, 'create'])->name('admin.attributive.create');
+
+        Route::post('/create', [AttributeValueController::class, 'store'])->name('admin.attributive.store');
     });
 });

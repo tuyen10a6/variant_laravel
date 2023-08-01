@@ -38,7 +38,7 @@
                 <h6 class="collapse-header">Quản lý:</h6>
                 <a class="collapse-item" href="{{route('admin.product.index')}}">Sản phẩm</a>
                 <a class="collapse-item" href="{{route('admin.attribute.index')}}">Thuộc tính</a>
-                <a class="collapse-item" href="">Giá trị thuộc tính</a>
+                <a class="collapse-item" href="{{route('admin.attributive.index')}}">Giá trị thuộc tính</a>
             </div>
         </div>
     </li>
