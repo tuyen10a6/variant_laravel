@@ -58,5 +58,11 @@ Route::prefix('admin')->group(function()
         Route::get('/create', [AttributeValueController::class, 'create'])->name('admin.attributive.create');
 
         Route::post('/create', [AttributeValueController::class, 'store'])->name('admin.attributive.store');
+
+        Route::get('/update/{id}', [AttributeValueController::class, 'show'])->name('admin.attributive.show');
+
+        Route::put('/update/{id}', [AttributeValueController::class, 'update'])->name('admin.attributive.update');
+
+        Route::delete('/delete/{id}', [AttributeValueController::class, 'delete'])->name('admin.attributive.remove');
     });
 });

@@ -15,7 +15,7 @@ class AttributeValueController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
-   public function  index()
+   public function index()
    {
        $attribute_value = AttributeValue::with('attributes')->get();
 
@@ -26,7 +26,7 @@ class AttributeValueController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
 
-    public  function  create()
+    public function create()
     {
         $attribute = Attribute::all();
 
@@ -37,7 +37,7 @@ class AttributeValueController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public  function  store(Request $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'value' => 'required'
@@ -52,14 +52,57 @@ class AttributeValueController extends Controller
         return redirect()->route('admin.attributive.index');
     }
 
-    public  function  show($id)
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
+    public function show($id)
     {
+        $attrval = AttributeValue::find($id);
 
-        $attr = AttributeValue::find($id);
+        $attribute = Attribute::all();
 
-//        return view('admin.attribute_')
+        return view('admin.attribute_value.update', compact('attrval', 'attribute'));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $id)
+    {
+        $attrvalue = AttributeValue::find($id);
+
+        $attrvalue->attribute_id = $request->input('attribute_id');
+
+        $attrvalue->value = $request->input('value');
+
+        $attrvalue->code = Str::slug($request->input('value'), '-');
+
+        $attrvalue->save();
+
+        return redirect()->route('admin.attributive.index');
+
+    }
+
+    /**
+     * @param $id
+     * @return void
+     */
+    public function delete($id)
+    {
+
+        $attrval = AttributeValue::find($id);
+
+        if($attrval)
+        {
+            $attrval->delete();
+
+            return redirect()->route('admin.attributive.index');
+        }
+
+    }
 
 
 }
