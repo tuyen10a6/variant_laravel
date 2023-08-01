@@ -39,6 +39,7 @@
                 <a class="collapse-item" href="{{route('admin.product.index')}}">Sản phẩm</a>
                 <a class="collapse-item" href="{{route('admin.attribute.index')}}">Thuộc tính</a>
                 <a class="collapse-item" href="{{route('admin.attributive.index')}}">Giá trị thuộc tính</a>
+                <a class="collapse-item" href="">Biến thể sản phẩm</a>
             </div>
         </div>
     </li>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\product\ProductController;
 use App\Http\Controllers\attribute\AttributeController;
 use App\Http\Controllers\attribute_value\AttributeValueController;
+use App\Http\Controllers\variant\VariantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,4 +66,10 @@ Route::prefix('admin')->group(function()
 
         Route::delete('/delete/{id}', [AttributeValueController::class, 'delete'])->name('admin.attributive.remove');
     });
+
+    Route::prefix('variant')->group(function ()
+    {
+        Route::get('/{id}', [VariantController::class, 'getVariantByProduct'])->name('admin.variant.getvariant');
+    });
+
 });
