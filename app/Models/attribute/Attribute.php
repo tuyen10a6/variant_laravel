@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\attribute;
+use App\Models\attribute_value\AttributeValue;
 use App\Models\product\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,4 +19,9 @@ class Attribute extends Model
         'attribute_code',
         'name'
     ];
+
+    public function attributeval(): HasMany
+    {
+        return $this->hasMany(AttributeValue::class);
+    }
 }

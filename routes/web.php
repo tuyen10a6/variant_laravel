@@ -70,6 +70,8 @@ Route::prefix('admin')->group(function()
     Route::prefix('variant')->group(function ()
     {
         Route::get('/{id}', [VariantController::class, 'getVariantByProduct'])->name('admin.variant.getvariant');
+
+        Route::get('/variant/create/product/{id}', [VariantController::class, 'create'])->name('admin.variant.create');
     });
 
 });
