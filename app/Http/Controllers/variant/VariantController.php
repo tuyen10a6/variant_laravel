@@ -30,17 +30,26 @@ class VariantController extends Controller
     /**
      * @return void
      */
-
       public function create($id)
       {
           $product = Product::where('id', $id)->first();
 
-          $attributes = Attribute::with('attributeval')->get();
-
-          dd($attributes);
+          $attributes = Attribute::all();
 
           return view('admin.variant.create', compact('product', 'attributes'));
-
       }
 
+    /**
+     * @param Request $request
+     * @param $attributeId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAttributeValues(Request $request, $attributeId)
+    {
+        $attribute = Attribute::find($attributeId);
+
+        $attributeValues = $attribute->attributevals;
+
+        return response()->json($attributeValues);
+    }
 }

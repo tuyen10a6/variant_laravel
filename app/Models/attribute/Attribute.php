@@ -20,7 +20,7 @@ class Attribute extends Model
         'name'
     ];
 
-    public function attributeval(): HasMany
+    public function attributevals(): HasMany
     {
         return $this->hasMany(AttributeValue::class);
     }
