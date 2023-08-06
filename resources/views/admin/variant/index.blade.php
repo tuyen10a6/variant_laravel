@@ -11,6 +11,7 @@
             <th scope="col">STT</th>
             <th scope="col">Tên biến thể</th>
             <th scope="col">Giá tiền</th>
+            <th scope="col">Hình ảnh</th>
             <th scope="col">Số lượng</th>
             <th scope="col">Trạng thái</th>
             <th scope="col">Thao tác</th>
@@ -22,6 +23,9 @@
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $item->name }}</td>
                 <td>{{ number_format($item->price) }}</td>
+                <td>
+                    <img style="width: 100px; height: 100px" src="{{ $item->image }}">
+                </td>
                 <td>{{ $item->qty }}</td>
 
                 <td> @if($item->status ==1)

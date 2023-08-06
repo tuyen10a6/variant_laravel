@@ -22,7 +22,8 @@ class Variant extends Model
         'sku',
         'price',
         'qty',
-        'status'
+        'status',
+        'image',
     ];
 
     public function  products(): BelongsTo

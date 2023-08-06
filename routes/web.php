@@ -75,6 +75,7 @@ Route::prefix('admin')->group(function()
 
         Route::get('get-attribute-values/{attributeId}', [VariantController::class, 'getAttributeValues'])->name('get.attribute.values');
 
+        Route::post('create_varaint', [VariantController::class, 'store'])->name('create.variant');
     });
 
 });
