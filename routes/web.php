@@ -5,6 +5,7 @@ use App\Http\Controllers\product\ProductController;
 use App\Http\Controllers\attribute\AttributeController;
 use App\Http\Controllers\attribute_value\AttributeValueController;
 use App\Http\Controllers\variant\VariantController;
+use App\Http\Controllers\Auth\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +17,18 @@ use App\Http\Controllers\variant\VariantController;
 |
 */
 
-Route::prefix('admin')->group(function()
+
+Route::prefix('admin')->group(function ()
 {
+    Route::get('login', [AuthController::class, 'login'])->name('admin.login');
+
+    Route::post('checklogin', [AuthController::class, 'checkLogin'])->name('admin.checklogin');
+});
+
+
+Route::middleware('auth.admin')->prefix('admin')->group(function()
+{
+    Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
     Route::prefix('product')->group(function() {
 
         Route::get('', [ProductController::class, 'index'])->name('admin.product.index');

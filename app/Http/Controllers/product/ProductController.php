@@ -10,11 +10,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
+use function PHPUnit\Framework\returnArgument;
 
 
 class ProductController extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    /**
+     * ProductController constructor.
+     */
+
+    public function __construct()
+    {
+
+    }
+
+    public function index()
     {
 
         $products = Product::with('category', 'brand', 'product_image')->where("status", Product::PRODUCT_STATUS_IS_ACTIVE)->paginate(10);
@@ -24,13 +34,16 @@ class ProductController extends Controller
         return view('admin.product.index', compact('products'));
     }
 
-    public function  show($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
-    {
-        $product = Product::with('category','brand')->find($id);
+    /**
+     * @param $id
+     */
 
-        return view('admin.product.detail', compact('product'));
+     public function  show($id)
+     {
+         $product = Product::with('category', 'brand')->find($id);
 
-    }
+         return view('admin.product.detail', compact('product'));
+     }
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
@@ -89,7 +102,7 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
      */
 
-    public function show_update($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function show_update($id)
     {
         $product = Product::find($id);
 
@@ -100,6 +113,11 @@ class ProductController extends Controller
         return view('admin.product.update', compact('product', 'categories', 'brands'));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function edit(Request $request, $id)
     {
         $product = Product::find($id);
@@ -136,6 +154,10 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function remove($id)
     {
         $product = Product::find($id);
